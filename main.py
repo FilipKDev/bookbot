@@ -1,19 +1,26 @@
 import string
 
 def main():
-    with open("books/frankenstein.txt") as f:
+    book_content = open_file()
+    count_words(book_content)
+    count_characters(book_content)
+
+def open_file():
+    file_path = "books/frankenstein.txt"
+    with open(file_path) as f:
         file_contents = f.read()
         return file_contents
 
-def count_words(book_content):
+def count_words(content):
     word_count = 0
-    words = book_content.split()
+    words = content.split()
     for word in words:
         word_count += 1
-    # print(word_count)
+    print(f"This book has {word_count} words")
+    return word_count
 
-def count_characters(book_content):
-    book_content_lowered = book_content.lower()
+def count_characters(content):
+    book_content_lowered = content.lower()
     character_count = {}
     characters = list(string.ascii_lowercase)
     characters.append(" ")
@@ -28,6 +35,5 @@ def count_characters(book_content):
     print(character_count)
     return character_count
 
-book_content = main()
-count_words(book_content)
-count_characters(book_content)
+
+main()
